@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -10,7 +10,7 @@ const Login = () => {
   const { data, status } = useSession();
   const signinWithGoogle = () => {
     signIn("google");
-    if (data.user.name) {
+    if (data) {
       router.push("/");
     }
   };
@@ -26,7 +26,7 @@ const Login = () => {
         </Link>
       ) : (
         <button
-          onClick={signinWithGoogle}
+          onClick={() => signinWithGoogle()}
           className="bg-black py-2 px-6 rounded-lg text-white cursor-pointer"
         >
           sign in with gooogle

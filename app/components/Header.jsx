@@ -1,15 +1,23 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 import Link from "next/link";
 import { BsFillBellFill } from "react-icons/bs";
 import { AiFillMessage } from "react-icons/ai";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 const Header = () => {
+  const router = useRouter();
   const { data, status } = useSession();
-
+  const onCreateClick = () => {
+    if (data) {
+      router.push("/create-pin");
+    } else {
+      signIn();
+    }
+  };
   return (
-    <div className="flex justify-between items-center  gap-2">
+    <div className="flex justify-between items-center gap-2">
       <Image
         src="/logo.png"
         width={40}
@@ -17,12 +25,16 @@ const Header = () => {
         alt="logo"
         className="cursor-pointer"
       />
-      <div className="flex gap-2 justify-center items-center ml-2">
+      <div className="flex gap-4 justify-center items-center ">
         <Link href="/" className="cursor-pointer">
           Home
         </Link>
-        <Link href="/create-pin" className="cursor-pointer">
-          Create
+        <Link
+          href="/create-pin"
+          className="cursor-pointer"
+          onClick={() => onCreateClick()}
+        >
+          Create Pin
         </Link>
       </div>
       <div className="w-[70%] flex justify-center items-center  border-gray-300 ">
@@ -39,11 +51,11 @@ const Header = () => {
         {data?.user.name ? (
           <Link href="/profile" className="cursor-pointer text-sm font-bold">
             <Image
-              src="/man.png"
+              src={data?.user.image}
               width={30}
               height={30}
               alt="man-profile"
-              className="cursor-pointer"
+              className="cursor-pointer rounded-full object-cover"
             />
           </Link>
         ) : (
