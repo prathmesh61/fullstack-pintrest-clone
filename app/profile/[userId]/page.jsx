@@ -58,7 +58,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center mt-6">
         <div className="flex flex-col items-center justify-center ">
           {data?.user.image ? (
             <Image

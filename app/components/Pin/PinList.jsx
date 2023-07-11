@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const PinList = ({ pinList }) => {
   // console.log(pinList);
-
+  const router = useRouter();
   return (
     <div
       className="mt-7 px-2 md:px-5
@@ -14,7 +15,11 @@ const PinList = ({ pinList }) => {
     >
       {pinList.map((pin) => {
         return (
-          <div key={pin.id} className="flex flex-col cursor-pointer">
+          <div
+            key={pin.id}
+            className="flex flex-col cursor-pointer"
+            onClick={() => router.push(`/pindetails/${pin.id}`)}
+          >
             <Image src={pin.image} alt={pin.title} height={500} width={500} />
             <h3>{pin.title}</h3>
           </div>
