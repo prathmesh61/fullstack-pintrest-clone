@@ -18,17 +18,15 @@ const Header = () => {
   };
   return (
     <div className="flex justify-between items-center gap-2">
-      <Image
-        src="/logo.png"
-        width={40}
-        height={40}
-        alt="logo"
-        className="cursor-pointer"
-      />
       <div className="flex gap-4 justify-center items-center ">
-        <Link href="/" className="cursor-pointer">
-          Home
-        </Link>
+        <Image
+          src="/logo.png"
+          width={40}
+          height={40}
+          alt="logo"
+          className="cursor-pointer"
+          onClick={() => router.push("/")}
+        />
         <Link
           href="/create-pin"
           className="cursor-pointer"
@@ -49,7 +47,10 @@ const Header = () => {
         <BsFillBellFill className="cursor-pointer w-8 h-8" />
         <AiFillMessage className="cursor-pointer w-8 h-8" />
         {data?.user.name ? (
-          <Link href="/profile" className="cursor-pointer text-sm font-bold">
+          <Link
+            href={`/profile/${data?.user.email}`}
+            className="cursor-pointer text-sm font-bold"
+          >
             <Image
               src={data?.user.image}
               width={30}

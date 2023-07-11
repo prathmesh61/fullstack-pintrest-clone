@@ -19,7 +19,6 @@ function Form() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  //   const storage = getStorage(app);
   const db = getFirestore(app);
   const postId = Date.now().toString();
   const storage = getStorage(app);
@@ -53,43 +52,13 @@ function Form() {
             (resp) => {
               console.log("Saved", resp);
               setLoading(true);
-              //   router.push("/" + data.user.email);
+
+              router.push("/");
             }
           );
         });
       });
   };
-
-  //   const uploadFile = () => {
-  //     const storageRef = ref(storage, "pinterest/" + file.name);
-  //     uploadBytes(storageRef, file)
-  //       .then((snapshot) => {
-  //         console.log("File Uploaded");
-  //       })
-  //       .then((resp) => {
-  //         getDownloadURL(storageRef).then(async (url) => {
-  //           console.log("DownloadUrl", url);
-  //           const postData = {
-  //             title: title,
-  //             desc: desc,
-  //             link: link,
-  //             image: url,
-  //             userName: session.user.name,
-  //             email: session.user.email,
-  //             userImage: session.user.image,
-  //             id: postId,
-  //           };
-
-  //           await setDoc(doc(db, "pinterest-post", postId), postData).then(
-  //             (resp) => {
-  //               console.log("Saved");
-  //               setLoading(true);
-  //               router.push("/" + session.user.email);
-  //             }
-  //           );
-  //         });
-  //       });
-  //   };
 
   return (
     <div className=" bg-white p-16 rounded-2xl ">
