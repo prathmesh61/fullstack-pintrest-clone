@@ -96,7 +96,7 @@ const Profile = () => {
           </button>
         )}
       </div>
-      <PinList pinList={pinList} />
+      {data && <PinList pinList={pinList} />}
     </>
   );
 };

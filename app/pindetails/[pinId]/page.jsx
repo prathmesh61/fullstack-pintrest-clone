@@ -63,7 +63,7 @@ const PinDetails = ({ params }) => {
                 Go To Website
               </Link>
               <div
-                className="flex gap-4 mt-4"
+                className="flex gap-4 mt-4 cursor-pointer"
                 onClick={() => router.push(`/profile/${pinDetail.email}`)}
               >
                 <Image
